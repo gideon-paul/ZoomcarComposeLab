@@ -1,0 +1,3 @@
+[submodule "android-uikit"]
+	path = android-uikit
+	url = git@github.com:ZoomCar/android-uikit.git

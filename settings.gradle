@@ -14,3 +14,5 @@ dependencyResolutionManagement {
 }
 rootProject.name = "ZoomcarAndroidLab"
 include ':app'
+include ':zuikit'
+project(':zuikit').projectDir = file('android-uikit/uikit')

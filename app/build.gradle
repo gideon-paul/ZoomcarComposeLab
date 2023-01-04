@@ -32,28 +32,30 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
+    buildFeatures {
+        compose true
+    }
+
+    composeOptions {
+        kotlinCompilerVersion Libs.AndroidX.Compose.kotlinCompilerVersion
+        kotlinCompilerExtensionVersion Libs.AndroidX.Compose.version
+    }
 }
 
 dependencies {
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     implementation fileTree(include: ['*.jar'], dir: 'libs')
+
+    implementation project(':zuikit')
 
     implementation Libs.Google.playCore
     implementation Libs.Google.playCoreKtx
-
-    // Android Support Library
-    implementation "androidx.appcompat:appcompat:${Libs.Version.appcompat}"
-
-    // Android architecture components
-    implementation "androidx.lifecycle:lifecycle-viewmodel:${Libs.Version.lifecycle}"
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:${Libs.Version.lifecycle}"
-    implementation "androidx.lifecycle:lifecycle-common-java8:${Libs.Version.lifecycle}"
-    implementation "androidx.lifecycle:lifecycle-livedata-ktx:${Libs.Version.livedata}"
-    implementation "androidx.lifecycle:lifecycle-livedata-core-ktx:${Libs.Version.livedata}"
-    implementation "androidx.lifecycle:lifecycle-runtime-ktx:${Libs.Version.livedata}"
+    implementation Libs.AndroidX.appcompat
 
     implementation Libs.AndroidX.Compose.Accompanist.pager
     implementation Libs.AndroidX.Compose.Accompanist.pageIndicator
+
+    implementation 'androidx.activity:activity-compose:1.6.1'
+    implementation 'androidx.compose.ui:ui-tooling-preview:1.1.1'
+    debugImplementation 'androidx.compose.ui:ui-tooling:1.1.1'
 }
