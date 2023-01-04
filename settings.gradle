@@ -12,7 +12,7 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "ZoomcarAndroidLab"
+rootProject.name = "ZoomcarComposeLab"
 include ':app'
 include ':zuikit'
 project(':zuikit').projectDir = file('android-uikit/uikit')
