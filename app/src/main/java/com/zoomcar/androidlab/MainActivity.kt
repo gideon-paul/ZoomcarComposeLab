@@ -45,7 +45,7 @@ fun SocialMediaIntentsTester() {
         verticalArrangement = Arrangement.spacedBy(ZDimension.D16.dp)
     ) {
         ZLabel(
-            text = "Social Media Intents",
+            text = "Social Media Links",
             style = ZTypography.H3
         )
 
