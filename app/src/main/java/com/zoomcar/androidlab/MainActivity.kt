@@ -69,7 +69,7 @@ fun SocialMediaIntentsTester() {
             text = "Messenger",
             fullWidth = true,
             onClick = {
-                handleMessenger(context, message)
+                sendMessageViaFacebookMessenger(context, message)
             }
         )
 
@@ -85,7 +85,7 @@ fun SocialMediaIntentsTester() {
             text = "Twitter",
             fullWidth = true,
             onClick = {
-                handleTwitter(context, message)
+                tweetToTwitter(context, message)
             }
         )
 
@@ -136,7 +136,6 @@ fun sendMessageViaWhatsapp(
  *
  * @param context Context
  * @param url Url to be posted.
- *
  */
 fun postToFacebook(context: Context, url: String) {
     val intent = Intent()
@@ -149,7 +148,17 @@ fun postToFacebook(context: Context, url: String) {
     }
 }
 
-fun handleMessenger(context: Context, message: String) {
+/**
+ * This will open the facebook messenger with list of all user contacts. The user has to manually
+ * choose the contacts to send message.
+ *
+ * @param context Context
+ * @param message Message to be sent.
+ */
+fun sendMessageViaFacebookMessenger(
+    context: Context,
+    message: String
+) {
     val intent = Intent()
     intent.apply {
         `package` = "com.facebook.orca"
@@ -157,12 +166,7 @@ fun handleMessenger(context: Context, message: String) {
         putExtra(Intent.EXTRA_TEXT, message)
         type = "text/plain"
     }
-
-    try {
-        context.startActivity(intent)
-    } catch (ex: ActivityNotFoundException) {
-        // "Please Install Facebook Messenger"
-    }
+    context.startActivity(intent)
 }
 
 fun handleViber(context: Context, message: String) {
@@ -180,20 +184,17 @@ fun handleViber(context: Context, message: String) {
     }
 }
 
-fun handleTwitter(context: Context, message: String) {
-    val intent = Intent()
-    intent.apply {
-        `package` = "com.twitter.android"
-        action = Intent.ACTION_SEND
-        putExtra(Intent.EXTRA_TEXT, message)
-        type = "text/plain"
-    }
-
-    try {
-        context.startActivity(intent)
-    } catch (ex: ActivityNotFoundException) {
-        // TODO: Handle failure
-    }
+/**
+ * Tweets a given message via twitter app.
+ *
+ * @param context Context
+ * @param tweet Tweet to be sent out. Be mindful of the character limit.
+ */
+fun tweetToTwitter(context: Context, tweet: String) {
+    val intent = Intent(Intent.ACTION_VIEW)
+    intent.data =
+        Uri.parse("https://twitter.com/intent/tweet?text=$tweet")
+    context.startActivity(intent)
 }
 
 fun handleZello(context: Context, message: String) {
