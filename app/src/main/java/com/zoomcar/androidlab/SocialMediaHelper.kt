@@ -5,6 +5,13 @@ import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.net.Uri
 
+/**
+ * SocialMediaHelper
+ *
+ * @param application [Application] object.
+ *
+ * @author Gideon Paul
+ */
 class SocialMediaHelper(
     private val application: Application
 ) {
