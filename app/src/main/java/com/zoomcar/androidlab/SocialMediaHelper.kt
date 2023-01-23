@@ -1,19 +1,19 @@
 package com.zoomcar.androidlab
 
-import android.app.Application
 import android.content.ActivityNotFoundException
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 
 /**
  * SocialMediaHelper
  *
- * @param application [Application] object.
+ * @param context [Context].
  *
  * @author Gideon Paul
  */
 class SocialMediaHelper(
-    private val application: Application
+    private val context: Context
 ) {
     /**
      * Send message to a phone number on Whatsapp. It appears that the phone number need not be saved
@@ -39,7 +39,7 @@ class SocialMediaHelper(
 
         val intent = Intent(Intent.ACTION_VIEW, uri)
         intent.putExtra(Intent.EXTRA_TEXT, message)
-        application.startActivity(intent)
+        context.startActivity(intent)
     }
 
     /**
@@ -57,7 +57,7 @@ class SocialMediaHelper(
             action = Intent.ACTION_SEND
             type = "text/plain"
             putExtra(Intent.EXTRA_TEXT, url)
-            application.startActivity(intent)
+            context.startActivity(intent)
         }
     }
 
@@ -77,7 +77,7 @@ class SocialMediaHelper(
             putExtra(Intent.EXTRA_TEXT, message)
             type = "text/plain"
         }
-        application.startActivity(intent)
+        context.startActivity(intent)
     }
 
     fun handleViber(message: String) {
@@ -89,7 +89,7 @@ class SocialMediaHelper(
         }
 
         try {
-            application.startActivity(intent)
+            context.startActivity(intent)
         } catch (ex: ActivityNotFoundException) {
             // "Please Install Facebook Messenger"
         }
@@ -104,7 +104,7 @@ class SocialMediaHelper(
         val intent = Intent(Intent.ACTION_VIEW)
         intent.data =
             Uri.parse("https://twitter.com/intent/tweet?text=$tweet")
-        application.startActivity(intent)
+        context.startActivity(intent)
     }
 
     fun handleZalo(message: String) {
@@ -117,7 +117,7 @@ class SocialMediaHelper(
         }
 
         try {
-            application.startActivity(intent)
+            context.startActivity(intent)
         } catch (ex: ActivityNotFoundException) {
             // TODO: Handle failure
         }

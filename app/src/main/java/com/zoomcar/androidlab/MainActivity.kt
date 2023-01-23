@@ -15,10 +15,11 @@ import com.zoomcar.zuikit.label.ZLabel
 import com.zoomcar.zuikit.typography.ZTypography
 
 class MainActivity : AppCompatActivity() {
-    private val socialMediaHelper = SocialMediaHelper(application)
+    private lateinit var socialMediaHelper: SocialMediaHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        socialMediaHelper = SocialMediaHelper(this)
         setContent {
             SocialMediaIntentsTester(socialMediaHelper)
         }
