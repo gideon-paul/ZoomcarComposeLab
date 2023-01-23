@@ -53,7 +53,7 @@ fun SocialMediaIntentsTester() {
             text = "Whatsapp",
             fullWidth = true,
             onClick = {
-                handleWhatsapp(context, "917483785428", message)
+                sendMessageViaWhatsapp(context, "917483785428", message)
             }
         )
 
@@ -108,7 +108,7 @@ fun SocialMediaIntentsTester() {
  * a plus sign. though that's not a requirement.
  * @param message Message to be sent to the user.
  */
-fun handleWhatsapp(context: Context, phoneNumber: String, message: String) {
+fun sendMessageViaWhatsapp(context: Context, phoneNumber: String, message: String) {
     val uri = Uri.parse("whatsapp://send?phone=$phoneNumber&text=$message")
     val intent = Intent(Intent.ACTION_VIEW, uri)
     intent.putExtra(Intent.EXTRA_TEXT, message)
