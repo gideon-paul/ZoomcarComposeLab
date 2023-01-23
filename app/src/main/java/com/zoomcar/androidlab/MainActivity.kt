@@ -135,7 +135,7 @@ fun sendMessageViaWhatsapp(
  * See https://stackoverflow.com/a/14496338/3376001
  *
  * @param context Context
- * @url Url to be posted.
+ * @param url Url to be posted.
  *
  */
 fun postToFacebook(context: Context, url: String) {
