@@ -53,7 +53,7 @@ fun SocialMediaIntentsTester() {
             text = "Whatsapp",
             fullWidth = true,
             onClick = {
-                sendMessageViaWhatsapp(context, "917483785428", message)
+                sendMessageViaWhatsapp(context, null, message)
             }
         )
 
@@ -101,15 +101,28 @@ fun SocialMediaIntentsTester() {
 
 /**
  * Send message to a phone number on Whatsapp. It appears that the phone number need not be saved
- * in the user contacts for this to work.
+ * in the user contacts for this to work.  If no phone number is specified, this function will open
+ * Whatsapp with list of contacts and the user should choose whom to send the message. For invalid
+ * or incomplete phone numbers, Whatsapp will display error dialogs accordingly.
  *
  * @param context Context object.
+ * @param message Message to be sent to the user.
  * @param phoneNumber Must be a valid phone number with country code. The number can be preceded by
  * a plus sign. though that's not a requirement.
- * @param message Message to be sent to the user.
  */
-fun sendMessageViaWhatsapp(context: Context, phoneNumber: String, message: String) {
-    val uri = Uri.parse("whatsapp://send?phone=$phoneNumber&text=$message")
+fun sendMessageViaWhatsapp(
+    context: Context,
+    phoneNumber: String?,
+    message: String
+) {
+    val uri = Uri.parse(
+        if (phoneNumber == null) {
+            "whatsapp://send?text=$message"
+        } else {
+            "whatsapp://send?phone=$phoneNumber&text=$message"
+        }
+    )
+
     val intent = Intent(Intent.ACTION_VIEW, uri)
     intent.putExtra(Intent.EXTRA_TEXT, message)
     context.startActivity(intent)
