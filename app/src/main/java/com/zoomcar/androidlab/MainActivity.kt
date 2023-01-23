@@ -61,7 +61,7 @@ fun SocialMediaIntentsTester() {
             text = "Facebook",
             fullWidth = true,
             onClick = {
-                handleFacebook(context, message)
+                postToFacebook(context, message)
             }
         )
 
@@ -129,19 +129,23 @@ fun sendMessageViaWhatsapp(
 }
 
 /**
- * Looks like Facebook allows only sharing an url, not text.
+ * Looks like Facebook allows only sharing an url, not text. The user has to manually type in the
+ * text to be posted.
  *
  * See https://stackoverflow.com/a/14496338/3376001
  *
+ * @param context Context
+ * @url Url to be posted.
+ *
  */
-fun handleFacebook(context: Context, message: String) {
+fun postToFacebook(context: Context, url: String) {
     try {
         val intent = Intent()
         intent.apply {
             `package` = "com.facebook.katana"
             action = Intent.ACTION_SEND
             type = "text/plain"
-            putExtra(Intent.EXTRA_TEXT, message)
+            putExtra(Intent.EXTRA_TEXT, url)
             context.startActivity(intent)
         }
     } catch (e: Exception) {
