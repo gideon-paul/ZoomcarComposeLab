@@ -139,19 +139,13 @@ fun sendMessageViaWhatsapp(
  *
  */
 fun postToFacebook(context: Context, url: String) {
-    try {
-        val intent = Intent()
-        intent.apply {
-            `package` = "com.facebook.katana"
-            action = Intent.ACTION_SEND
-            type = "text/plain"
-            putExtra(Intent.EXTRA_TEXT, url)
-            context.startActivity(intent)
-        }
-    } catch (e: Exception) {
-//        val sharerUrl = "https://www.facebook.com/sharer/sharer.php?u=$message"
-//        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(sharerUrl))
-//        context.startActivity(intent)
+    val intent = Intent()
+    intent.apply {
+        `package` = "com.facebook.katana"
+        action = Intent.ACTION_SEND
+        type = "text/plain"
+        putExtra(Intent.EXTRA_TEXT, url)
+        context.startActivity(intent)
     }
 }
 
